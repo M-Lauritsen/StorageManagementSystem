@@ -1,0 +1,26 @@
+﻿### Get all inventory items
+GET https://localhost:7090/api/inventory
+
+### Get a specific inventory item by ID
+GET https://localhost:7090/api/inventory/1
+
+### Add a new inventory item
+POST https://localhost:7090/api/inventory
+Content-Type: application/json
+
+{
+  "name": "New Item",
+  "description": "A brand new item",
+  "quantity": 100,
+  "price": 29.99
+}
+
+### Update the quantity of an inventory item
+PUT https://localhost:7090/api/inventory/1/quantity
+Content-Type: application/json
+
+10
+
+
+### Delete an inventory item
+DELETE https://localhost:7090/api/inventory/2
