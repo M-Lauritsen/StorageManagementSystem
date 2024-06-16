@@ -3,7 +3,7 @@ using StorageManagement.Domain.Models;
 
 namespace StorageManagement.Application.Services;
 
-public class InventoryService(IInventoryRepository inventoryRepository)
+public class InventoryService(IInventoryRepository inventoryRepository) : IInventoryService
 {
     private readonly IInventoryRepository _inventoryRepository = inventoryRepository;
 

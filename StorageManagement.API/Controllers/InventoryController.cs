@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using StorageManagement.Application.Services;
+using StorageManagement.Domain.Interfaces;
 using StorageManagement.Domain.Models;
 
 namespace StorageManagement.API.Controllers;
@@ -8,9 +8,9 @@ namespace StorageManagement.API.Controllers;
 [Route("api/[controller]")]
 public class InventoryController : ControllerBase
 {
-    private readonly InventoryService _inventoryService;
+    private readonly IInventoryService _inventoryService;
 
-    public InventoryController(InventoryService inventoryService)
+    public InventoryController(IInventoryService inventoryService)
     {
         _inventoryService = inventoryService;
     }

@@ -8,7 +8,7 @@ namespace StorageManagement.Test.Application;
 public class InventoryServiceTests
 {
     private readonly Mock<IInventoryRepository> _inventoryRepositoryMock;
-    private readonly InventoryService _inventoryService;
+    private readonly IInventoryService _inventoryService;
 
     public InventoryServiceTests()
     {
