@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using StorageManagement.Application.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Identity.Web;
 using StorageManagement.Domain.Interfaces;
 using StorageManagement.Infrastructure.Data;
 using StorageManagement.Infrastructure.Repositories;
@@ -9,6 +11,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        .AddMicrosoftIdentityWebApi(options =>
+        {
+            builder.Configuration.Bind("AzureAd", options);
+            options.TokenValidationParameters.NameClaimType = "name";
+        }, options => { builder.Configuration.Bind("AzureAd", options); });
 
 builder.Services.AddDbContext<DataContext>(options =>
 {
