@@ -6,10 +6,8 @@ public class PressenceTracker
     private static readonly Dictionary<string, string> userRoutes = new();
     private static readonly Dictionary<string, string> connectionToUser = new();
 
-    private static readonly PressenceTracker _instance = new PressenceTracker();
 
-    private PressenceTracker() { }
-    public static PressenceTracker Instance => _instance;
+    public PressenceTracker() { }
 
     public Task<bool> UserConnected(string username, string connectionId)
     {
@@ -78,7 +76,7 @@ public class PressenceTracker
         lock (userRoutes)
         {
             userRoutes[connectionId] = route;
-            connectionToUser[connectionId] = username; 
+            connectionToUser[connectionId] = username;
         }
 
         return Task.CompletedTask;
@@ -92,9 +90,9 @@ public class PressenceTracker
         {
             usersOnPage = userRoutes
                 .Where(kv => kv.Value == route)
-                .Select(kv => connectionToUser[kv.Key]) 
+                .Select(kv => connectionToUser[kv.Key])
                 .Distinct()
-                .ToList(); 
+                .ToList();
         }
 
         return Task.FromResult(usersOnPage);
@@ -111,7 +109,7 @@ public class PressenceTracker
     }
 
     // Reset method for testing
-    public static void Reset()
+    public void Reset()
     {
         lock (OnlineUsers)
         {

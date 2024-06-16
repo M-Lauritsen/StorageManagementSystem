@@ -4,9 +4,11 @@ namespace StorageManagement.Test.API;
 
 public class PressenceTests
 {
+    private readonly PressenceTracker _pressenceTracker;
     public PressenceTests()
     {
-        PressenceTracker.Reset();
+        _pressenceTracker = new PressenceTracker();
+        _pressenceTracker.Reset();
     }
 
     [Fact]
@@ -17,11 +19,11 @@ public class PressenceTests
         var connectionId = "connection1";
 
         // Act
-        var isOnline = await PressenceTracker.Instance.UserConnected(username, connectionId);
+        var isOnline = await _pressenceTracker.UserConnected(username, connectionId);
 
         // Assert
         Assert.True(isOnline);
-        var onlineUsers = await PressenceTracker.Instance.GetOnlineUsers();
+        var onlineUsers = await _pressenceTracker.GetOnlineUsers();
         Assert.Contains(username, onlineUsers);
     }
 
@@ -34,12 +36,12 @@ public class PressenceTests
         var connectionId2 = "connection2";
 
         // Act
-        await PressenceTracker.Instance.UserConnected(username, connectionId1);
-        var isOnline = await PressenceTracker.Instance.UserConnected(username, connectionId2);
+        await _pressenceTracker.UserConnected(username, connectionId1);
+        var isOnline = await _pressenceTracker.UserConnected(username, connectionId2);
 
         // Assert
         Assert.False(isOnline);
-        var connections = await PressenceTracker.Instance.GetConnectionsForUser(username);
+        var connections = await _pressenceTracker.GetConnectionsForUser(username);
         Assert.Contains(connectionId1, connections);
         Assert.Contains(connectionId2, connections);
     }
@@ -50,14 +52,14 @@ public class PressenceTests
         // Arrange
         var username = "testuser";
         var connectionId = "connection1";
-        await PressenceTracker.Instance.UserConnected(username, connectionId);
+        await _pressenceTracker.UserConnected(username, connectionId);
 
         // Act
-        var isOffline = await PressenceTracker.Instance.UserDisconnected(username, connectionId);
+        var isOffline = await _pressenceTracker.UserDisconnected(username, connectionId);
 
         // Assert
         Assert.True(isOffline);
-        var onlineUsers = await PressenceTracker.Instance.GetOnlineUsers();
+        var onlineUsers = await _pressenceTracker.GetOnlineUsers();
         Assert.DoesNotContain(username, onlineUsers);
     }
 
@@ -65,11 +67,11 @@ public class PressenceTests
     public async Task GetOnlineUsers_ShouldReturnAllOnlineUsers()
     {
         // Arrange
-        await PressenceTracker.Instance.UserConnected("user1", "connection1");
-        await PressenceTracker.Instance.UserConnected("user2", "connection2");
+        await _pressenceTracker.UserConnected("user1", "connection1");
+        await _pressenceTracker.UserConnected("user2", "connection2");
 
         // Act
-        var onlineUsers = await PressenceTracker.Instance.GetOnlineUsers();
+        var onlineUsers = await _pressenceTracker.GetOnlineUsers();
 
         // Assert
         Assert.Equal(2, onlineUsers.Length);
@@ -84,13 +86,13 @@ public class PressenceTests
         var username = "testuser";
         var connectionId = "connection1";
         var route = "/home";
-        await PressenceTracker.Instance.UserConnected(username, connectionId);
+        await _pressenceTracker.UserConnected(username, connectionId);
 
         // Act
-        await PressenceTracker.Instance.UpdateUserRoute(username, connectionId, route);
+        await _pressenceTracker.UpdateUserRoute(username, connectionId, route);
 
         // Assert
-        var userRoute = await PressenceTracker.Instance.GetUserRoute(connectionId);
+        var userRoute = await _pressenceTracker.GetUserRoute(connectionId);
         Assert.Equal(route, userRoute);
     }
 
@@ -99,14 +101,14 @@ public class PressenceTests
     {
         // Arrange
         var route = "/home";
-        await PressenceTracker.Instance.UserConnected("user1", "connection1");
-        await PressenceTracker.Instance.UpdateUserRoute("user1", "connection1", route);
+        await _pressenceTracker.UserConnected("user1", "connection1");
+        await _pressenceTracker.UpdateUserRoute("user1", "connection1", route);
 
-        await PressenceTracker.Instance.UserConnected("user2", "connection2");
-        await PressenceTracker.Instance.UpdateUserRoute("user2", "connection2", route);
+        await _pressenceTracker.UserConnected("user2", "connection2");
+        await _pressenceTracker.UpdateUserRoute("user2", "connection2", route);
 
         // Act
-        var usersOnPage = await PressenceTracker.Instance.GetUsersOnPage(route);
+        var usersOnPage = await _pressenceTracker.GetUsersOnPage(route);
 
         // Assert
         Assert.Contains("user1", usersOnPage);
@@ -119,11 +121,11 @@ public class PressenceTests
         // Arrange
         var connectionId = "connection1";
         var route = "/home";
-        await PressenceTracker.Instance.UserConnected("user1", connectionId);
-        await PressenceTracker.Instance.UpdateUserRoute("user1", connectionId, route);
+        await _pressenceTracker.UserConnected("user1", connectionId);
+        await _pressenceTracker.UpdateUserRoute("user1", connectionId, route);
 
         // Act
-        var userRoute = await PressenceTracker.Instance.GetUserRoute(connectionId);
+        var userRoute = await _pressenceTracker.GetUserRoute(connectionId);
 
         // Assert
         Assert.Equal(route, userRoute);

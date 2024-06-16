@@ -28,8 +28,8 @@ builder.Services.AddScoped<IInventoryService, InventoryService>();
 builder.Services.AddScoped<IInventoryRepository, InventoryRepository>();
 
 //Add SignalR
-builder.Services.AddSignalR();
 builder.Services.AddSingleton<PressenceTracker>();
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
