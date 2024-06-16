@@ -41,4 +41,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.MapHub<PressenceHub>("hubs/presence");
+
 app.Run();
