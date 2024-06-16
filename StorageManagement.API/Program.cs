@@ -5,6 +5,7 @@ using Microsoft.Identity.Web;
 using StorageManagement.Domain.Interfaces;
 using StorageManagement.Infrastructure.Data;
 using StorageManagement.Infrastructure.Repositories;
+using StorageManagement.API.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,10 @@ builder.Services.AddDbContext<DataContext>(options =>
 builder.Services.AddScoped<IInventoryService, InventoryService>();
 builder.Services.AddScoped<IInventoryRepository, InventoryRepository>();
 
+//Add SignalR
+builder.Services.AddSignalR();
+builder.Services.AddSingleton<PressenceTracker>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -35,5 +40,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHub<PressenceHub>("hubs/presence");
 
 app.Run();
