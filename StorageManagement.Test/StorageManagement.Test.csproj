@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\StorageManagement.API\StorageManagement.API.csproj" />
     <ProjectReference Include="..\StorageManagement.Application\StorageManagement.Application.csproj" />
     <ProjectReference Include="..\StorageManagement.Domain\StorageManagement.Domain.csproj" />
     <ProjectReference Include="..\StorageManagement.Infrastructure\StorageManagement.Infrastructure.csproj" />
