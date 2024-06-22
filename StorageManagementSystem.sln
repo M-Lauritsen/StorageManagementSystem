@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StorageManagement.Applicati
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StorageManagement.API", "StorageManagement.API\StorageManagement.API.csproj", "{91E52D40-ED11-4380-AE4B-6A85D4076F72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StorageManagement.Test", "StorageManagement.Test\StorageManagement.Test.csproj", "{960EDF29-85F8-4E91-BA37-EB7A9FB2C092}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StorageManagement.Test", "StorageManagement.Test\StorageManagement.Test.csproj", "{960EDF29-85F8-4E91-BA37-EB7A9FB2C092}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StorageManagementSystem.AppHost", "StorageManagementSystem.AppHost\StorageManagementSystem.AppHost.csproj", "{54D4A145-8F25-4E09-9FD4-B52C83BD6557}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StorageManagementSystem.ServiceDefaults", "StorageManagementSystem.ServiceDefaults\StorageManagementSystem.ServiceDefaults.csproj", "{5EC15BF8-633E-4825-AE49-20DB02492F0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{960EDF29-85F8-4E91-BA37-EB7A9FB2C092}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{960EDF29-85F8-4E91-BA37-EB7A9FB2C092}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{960EDF29-85F8-4E91-BA37-EB7A9FB2C092}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54D4A145-8F25-4E09-9FD4-B52C83BD6557}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54D4A145-8F25-4E09-9FD4-B52C83BD6557}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54D4A145-8F25-4E09-9FD4-B52C83BD6557}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54D4A145-8F25-4E09-9FD4-B52C83BD6557}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EC15BF8-633E-4825-AE49-20DB02492F0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EC15BF8-633E-4825-AE49-20DB02492F0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EC15BF8-633E-4825-AE49-20DB02492F0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EC15BF8-633E-4825-AE49-20DB02492F0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
