@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\StorageManagement.Infrastructure\StorageManagement.Infrastructure.csproj" />
+    <ProjectReference Include="..\StorageManagementSystem.ServiceDefaults\StorageManagementSystem.ServiceDefaults.csproj" />
   </ItemGroup>
 
   <ItemGroup>

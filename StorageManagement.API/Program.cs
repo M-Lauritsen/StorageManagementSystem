@@ -9,6 +9,8 @@ using StorageManagement.API.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddServiceDefaults();
+
 builder.Services.AddControllers();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         .AddMicrosoftIdentityWebApi(options =>
@@ -30,6 +32,8 @@ builder.Services.AddSingleton<PressenceTracker>();
 builder.Services.AddSignalR();
 
 var app = builder.Build();
+
+app.MapDefaultEndpoints();
 
 // Configure the HTTP request pipeline.
 
