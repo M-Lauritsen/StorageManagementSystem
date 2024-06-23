@@ -26,8 +26,7 @@ public class DataContext(DbContextOptions<DataContext> options) : DbContext(opti
                 .IsRequired()
                 .HasColumnType("decimal(18,2)");
             entity.Property(e => e.LastUpdated)
-                .IsRequired()
-                .HasDefaultValueSql("CURRENT_TIMESTAMP");
+                .IsRequired();
         });
     }
 }
